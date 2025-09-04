@@ -6,12 +6,12 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/tt_sketch-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/tt_sketch-{{ version }}.tar.gz
   sha256: f1256bbfdd81c6b5bb6ae6016401c5881b9a349e66eb3c0ca2f7ab9601b7dd3b
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 4
+  number: 5
 
 requirements:
   build:
