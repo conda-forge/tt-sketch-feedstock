@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: tt-sketch
+  version: "1.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/tt_sketch-${{ version }}.tar.gz
+  sha256: f1256bbfdd81c6b5bb6ae6016401c5881b9a349e66eb3c0ca2f7ab9601b7dd3b
+
+build:
+  number: 6
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - setuptools >=42
+    - wheel
+    - cython
+    - numpy
+    - scipy
+    - pytest-runner
+    - pip
+  run:
+    - python
+    - scipy
+
+tests:
+  - python:
+      imports:
+        - scripts
+        - tt_sketch
+      pip_check: true
+
+about:
+  summary: Streaming randomized TT-decompositions for structured tensors.
+  license: Apache-2.0
+  license_file: LICENSE
+  homepage: https://github.com/RikVoorhaar/tt-sketch
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
